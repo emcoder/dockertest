@@ -5,3 +5,10 @@ services:
 script:
   - docker build -t emcoder/node .
   - docker images emcoder/node
+before_deploy:
+  - docker login -u emcoder -p w0rkw0rk!T
+deploy:
+  provider: script
+  script: docker push emcoder/node
+  on:
+    branch: master
